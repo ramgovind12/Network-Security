@@ -2,6 +2,7 @@ from networksecurity.exception.exception import NetworkSecurityException
 from networksecurity.logging.logger import logging
 
 from networksecurity.entity.config_entity import DataIngestionConfig
+from networksecurity.entity.artifact_entity import DataIngestionArtifacts
 
 import os
 import sys
@@ -51,7 +52,7 @@ class DataIngestion:
     def split_data_as_train_test(self, dataframe: pd.DataFrame):
         try:
             train_set,test_set = train_test_split(
-                dataframe,self.data_ingestion_config.train_test_split_ratio
+                dataframe,test_size=self.data_ingestion_config.train_test_split_ratio
             )
             logging.info("Performed train test split on the dataframe")
             logging.info("Exited split_data_as_train_test method of Data Ingestion class")
@@ -75,5 +76,10 @@ class DataIngestion:
             dataframe = self.export_collection_as_dataframe()
             dataframe = self.export_data_into_feature_store(dataframe)
             self.split_data_as_train_test(dataframe)
+            dataingestionartifact = DataIngestionArtifacts(trained_file_path=self.data_ingestion_config.training_file_path,
+                                                           test_file_path=self.data_ingestion_config.testing_file_path)
+            
+            return dataingestionartifact
+
         except Exception as e:
             raise NetworkSecurityException(e,sys)
