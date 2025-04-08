@@ -95,6 +95,15 @@ class DataValidation:
             test_dataframe.to_csv(
                 self.data_validation_config.valid_test_file_path, index=False, header=True
             )
+
+            data_validation_artifact = DataValidationArtifact(
+                validation_status = status,
+                valid_train_file_path = self.data_ingestion_artifact.trained_file_path,
+                valid_test_file_path = self.data_ingestion_artifact.test_file_path,
+                invalid_train_file_path=None,
+                invalid_test_file_path=None,
+                drift_report_file_path=self.data_validation_config.drift_report_file_path,
+            )
              
         except Exception as e:
             raise NetworkSecurityException(e,sys)
