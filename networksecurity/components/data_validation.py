@@ -46,7 +46,7 @@ class DataValidation:
                 d2 = current_df[column]
                 is_same_dist = ks_2samp(d1,d2)
 
-                if threshold <= is_same_dist:
+                if threshold <= is_same_dist.pvalue:
                     is_found = False
                 else:
                     is_found = True
@@ -104,6 +104,8 @@ class DataValidation:
                 invalid_test_file_path=None,
                 drift_report_file_path=self.data_validation_config.drift_report_file_path,
             )
+
+            return data_validation_artifact
              
         except Exception as e:
             raise NetworkSecurityException(e,sys)
