@@ -11,7 +11,7 @@ Requires-Dist: certifi
 Requires-Dist: pymongo[srv]
 Requires-Dist: pymongo
 Requires-Dist: scikit-learn
-Requires-Dist: dill
 Requires-Dist: pyaml
+Requires-Dist: mlflow
 Dynamic: author
 Dynamic: requires-dist
