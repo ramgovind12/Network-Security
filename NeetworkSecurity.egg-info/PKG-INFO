@@ -13,5 +13,6 @@ Requires-Dist: pymongo
 Requires-Dist: scikit-learn
 Requires-Dist: pyaml
 Requires-Dist: mlflow
+Requires-Dist: dagshub
 Dynamic: author
 Dynamic: requires-dist

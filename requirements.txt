@@ -8,5 +8,6 @@ pymongo
 scikit-learn
 pyaml
 mlflow
+dagshub
 
 -e .
